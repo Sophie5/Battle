@@ -7,4 +7,9 @@ describe Player do
    expect(john.name).to eq("John")
   end
  end
+ describe "player attack" do
+   it ' responds to attack' do
+    expect(john).to respond_to(:attack)
+  end
+ end
 end
