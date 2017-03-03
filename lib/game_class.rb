@@ -2,7 +2,7 @@ require_relative 'player_class'
 
 class Game
 
-attr_reader :player1, :player2, :current_player, :opponent_player
+attr_reader :player1, :player2, :current_player, :opponent_player, :winner
 
   def initialize(player1,player2)
     @players = [player1,player2]
@@ -20,6 +20,7 @@ attr_reader :player1, :player2, :current_player, :opponent_player
 
   def attack(player)
    player.receive_damage
+   check_status_of_health
   end
 
   def switching
@@ -32,4 +33,15 @@ attr_reader :player1, :player2, :current_player, :opponent_player
     @players.select { |player| player != the_player }.first
   end
 
+ def game_over?
+ (@current_player.hit_points <= 0 || @opponent_player.hit_points <=0)
+ end
+
+ def check_status_of_health
+   if game_over?
+   @winner = @current_player
+   else
+     switching
+   end
+ end
 end

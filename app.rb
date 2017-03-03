@@ -26,12 +26,15 @@ class Battle < Sinatra::Base
   post '/attack' do
     @game = $game
     @game.attack(@game.opponent_player)
-    @game.switching
+    if @game.winner
+      erb :winner
+    # @game.switching
+  else
     # player
     erb :attack
     # p @game.current_player.name
     # p @game.opponent_player.name
-
+  end
   end
 
 
