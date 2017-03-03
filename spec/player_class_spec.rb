@@ -13,12 +13,12 @@ describe Player do
  end
  describe "player attack" do
    it 'responds to attack' do
-    game = Game.new
+    game = Game.new(@player1, @player2)
     expect(game).to respond_to(:attack)
   end
 
   it 'attack reduces hit points' do
-   game = Game.new
+   game = Game.new(@player1, @player2)
    expect{game.attack(david)}.to change{david.hit_points}.by -10
  end
 
