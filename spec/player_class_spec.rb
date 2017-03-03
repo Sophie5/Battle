@@ -1,6 +1,10 @@
-require 'player_class'
+require './lib/player_class'
+require './lib/game_class'
+
 describe Player do
   subject(:john) {Player.new('John')}
+  subject(:david) {Player.new('David')}
+  # let(:game) { Game.new}
 
   describe "name" do
   it" returns it's name" do
@@ -8,8 +12,15 @@ describe Player do
   end
  end
  describe "player attack" do
-   it ' responds to attack' do
-    expect(john).to respond_to(:attack)
+   it 'responds to attack' do
+    game = Game.new
+    expect(game).to respond_to(:attack)
   end
+
+  it 'attack reduces hit points' do
+   game = Game.new
+   expect{game.attack(david)}.to change{david.hit_points}.by -10
+ end
+
  end
 end
